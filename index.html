@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experian Job Poster</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-purple: #1a1752;
+            --accent-pink: #d11267;
+            --accent-purple: #7a1d7a;
+            --accent-yellow: #fcd500;
+            --text-dark: #333;
+            --bg-light: #f9f9fa;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .poster-container {
+            width: 100%;
+            max-width: 500px;
+            background-color: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* --- Header Section --- */
+        .header-section {
+            background: linear-gradient(to right, rgba(255,255,255,0.95) 40%, rgba(255,255,255,0.4)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop') no-repeat center right;
+            background-size: cover;
+            padding: 30px 20px 20px;
+            text-align: center;
+            border-bottom: 2px solid #eee;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary-purple);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+
+        .logo .dots {
+            color: var(--accent-pink);
+            font-size: 24px;
+        }
+
+        .tagline {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--primary-purple);
+            margin-bottom: 15px;
+        }
+        .tagline span {
+            color: var(--accent-pink);
+        }
+
+        .job-title {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--primary-purple);
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+
+        .badge-early {
+            background-color: var(--accent-pink);
+            color: #fff;
+            display: inline-block;
+            padding: 5px 15px;
+            font-weight: 800;
+            font-size: 16px;
+            border-radius: 4px;
+            margin-bottom: 5px;
+        }
+
+        .badge-referral {
+            background-color: var(--primary-purple);
+            color: #fff;
+            display: inline-block;
+            padding: 3px 10px;
+            font-weight: 700;
+            font-size: 12px;
+            border-radius: 20px;
+        }
+
+        /* --- Info Grid --- */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            text-align: center;
+            padding: 15px 10px;
+            background: #fff;
+        }
+
+        .info-item {
+            font-size: 9px;
+            color: var(--text-dark);
+            padding: 0 5px;
+            border-right: 1px solid #ddd;
+        }
+        .info-item:last-child {
+            border-right: none;
+        }
+
+        .info-item i {
+            font-size: 20px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .info-item strong {
+            display: block;
+            font-size: 10px;
+            margin-bottom: 2px;
+        }
+
+        .text-pink { color: var(--accent-pink); }
+        .text-purple { color: var(--primary-purple); }
+
+        /* --- Salary and Perks --- */
+        .salary-perks {
+            background-color: var(--primary-purple);
+            color: #fff;
+            display: flex;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px;
+            gap: 15px;
+        }
+
+        .salary-box {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            border-right: 1px solid rgba(255,255,255,0.2);
+            padding-right: 15px;
+        }
+
+        .salary-box i {
+            font-size: 40px;
+            color: var(--accent-yellow);
+            margin-right: 10px;
+        }
+
+        .salary-text-sm {
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .salary-amt {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--accent-yellow);
+            line-height: 1.2;
+        }
+
+        .salary-sub {
+            font-size: 8px;
+            color: #ccc;
+        }
+
+        .perks-box {
+            flex: 1;
+        }
+
+        .perks-title {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--accent-pink);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .perks-list {
+            list-style: none;
+            font-size: 8px;
+            line-height: 1.4;
+        }
+        
+        .perks-list li::before {
+            content: "•";
+            color: var(--accent-pink);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        .perks-list li {
+            padding-left: 1em;
+        }
+
+        /* --- Details Sections (What you'll do / Requirements) --- */
+        .details-container {
+            display: flex;
+            gap: 10px;
+            padding: 0 10px;
+            margin-bottom: 15px;
+        }
+
+        .detail-card {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 8px;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .bg-pink { background-color: var(--accent-pink); }
+        .bg-purple { background-color: var(--accent-purple); }
+
+        .detail-list {
+            list-style: none;
+            padding: 10px;
+            font-size: 9px;
+        }
+
+        .detail-list li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 5px;
+        }
+
+        .detail-list li i {
+            margin-top: 2px;
+            font-size: 10px;
+        }
+
+        /* --- Skills & Interests --- */
+        .skills-section {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .skills-title {
+            font-size: 10px;
+            font-weight: 800;
+            color: var(--primary-purple);
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .skills-title::before, .skills-title::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 30px;
+            height: 1px;
+            background-color: var(--primary-purple);
+        }
+        .skills-title::before { right: 100%; margin-right: 10px; }
+        .skills-title::after { left: 100%; margin-left: 10px; }
+
+        .skills-icons {
+            display: flex;
+            justify-content: space-between;
+            font-size: 8px;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+        
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            width: 20%;
+        }
+        
+        .skill-item i {
+            font-size: 16px;
+        }
+
+        /* --- CTA Footer --- */
+        .cta-section {
+            background-color: var(--primary-purple);
+            padding: 10px;
+            color: #fff;
+        }
+
+        .cta-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .cta-comment {
+            font-size: 12px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .cta-comment i { color: var(--accent-pink); font-size: 20px;}
+        .cta-comment span { color: var(--accent-yellow); }
+
+        .cta-missout {
+            font-size: 9px;
+            font-weight: 800;
+            text-align: right;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .cta-missout i { color: var(--accent-yellow); font-size: 16px; }
+        .cta-missout span { color: var(--accent-yellow); display: block;}
+
+        .cta-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .follow-box, .share-box {
+            flex: 1;
+            text-align: center;
+        }
+
+        .follow-box { font-size: 14px; font-weight: 800; color: #fff;}
+        .follow-box span { color: var(--accent-yellow); background: rgba(0,0,0,0.3); padding: 2px 5px; border-radius: 4px;}
+
+        .insta-icon {
+            font-size: 40px;
+            background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0 10px;
+        }
+
+        .share-box { font-size: 12px; font-weight: 800;}
+        .share-box span { background-color: var(--accent-yellow); color: var(--primary-purple); padding: 2px 5px; display: inline-block; font-size: 9px; margin-top: 5px;}
+
+    </style>
+</head>
+<body>
+
+    <div class="poster-container">
+        
+        <!-- Header / Hero -->
+        <div class="header-section">
+            <div class="logo">
+                <i class="fas fa-braille dots"></i> experian<sup style="font-size: 10px; font-weight: normal;">™</sup>
+            </div>
+            <div class="tagline">Powering Opportunities. <span>Creating a Better Tomorrow.</span></div>
+            <h1 class="job-title">ASSOCIATE<br>SOFTWARE ENGINEER</h1>
+            <div class="badge-early">EARLY CAREERS 2027</div><br>
+            <div class="badge-referral">(EMPLOYEE REFERRAL)</div>
+        </div>
+
+        <!-- 4 Column Info Grid -->
+        <div class="info-grid">
+            <div class="info-item">
+                <i class="fas fa-map-marker-alt text-pink"></i>
+                <strong>LOCATION</strong>
+                Hyderabad, Telangana, India
+            </div>
+            <div class="info-item">
+                <i class="fas fa-building text-purple"></i>
+                <strong>WORK MODE</strong>
+                Hybrid
+            </div>
+            <div class="info-item">
+                <i class="fas fa-briefcase text-pink"></i>
+                <strong>JOB TYPE</strong>
+                Full-time (Regular)
+            </div>
+            <div class="info-item">
+                <i class="fas fa-users text-purple"></i>
+                <strong>DEPARTMENT</strong>
+                Information Technology & Systems
+            </div>
+        </div>
+
+        <!-- Salary and Perks -->
+        <div class="salary-perks">
+            <div class="salary-box">
+                <i class="fas fa-sack-dollar"></i>
+                <div>
+                    <div class="salary-text-sm">EXPECTED SALARY</div>
+                    <div class="salary-amt">₹10 - ₹15 LPA*</div>
+                    <div class="salary-sub">(BASED ON INTERVIEW PERFORMANCE)</div>
+                </div>
+            </div>
+            <div class="perks-box">
+                <div class="perks-title"><i class="fas fa-star-square" style="background:#fff; color:var(--accent-pink); border-radius:3px; padding:2px;"></i> PERKS OF WORKING AT EXPERIAN</div>
+                <ul class="perks-list">
+                    <li>Award-winning culture</li>
+                    <li>Career growth & learning</li>
+                    <li>Inclusive & diverse environment</li>
+                    <li>Work-life balance</li>
+                    <li>Global exposure</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Details Section -->
+        <div class="details-container">
+            <!-- Left Column -->
+            <div class="detail-card">
+                <div class="card-header bg-pink">
+                    <i class="fas fa-clipboard-list"></i> WHAT YOU'LL DO
+                </div>
+                <ul class="detail-list">
+                    <li><i class="fas fa-check-circle text-pink"></i> Assist regional & cross-functional teams in implementing technical solutions.</li>
+                    <li><i class="fas fa-check-circle text-pink"></i> Contribute ideas & insights in team discussions to enhance outcomes.</li>
+                    <li><i class="fas fa-check-circle text-pink"></i> Participate in testing of new or enhanced product features.</li>
+                    <li><i class="fas fa-check-circle text-pink"></i> Document business requirements and develop technical specifications.</li>
+                    <li><i class="fas fa-check-circle text-pink"></i> Leverage AI-enabled tools & platforms to support analysis, documentation & solution development activities.</li>
+                </ul>
+            </div>
+            
+            <!-- Right Column -->
+            <div class="detail-card">
+                <div class="card-header bg-purple">
+                    <i class="fas fa-user-tie"></i> REQUIREMENTS
+                </div>
+                <ul class="detail-list">
+                    <li><i class="fas fa-check-circle text-purple"></i> Final-year 2026 graduating students from Computer Science / Information Technology or related engineering disciplines.</li>
+                    <li><i class="fas fa-check-circle text-purple"></i> Strong interest in AI, Generative AI technologies & innovation.</li>
+                    <li><i class="fas fa-check-circle text-purple"></i> Hands-on exposure to Generative AI tools (chatbots, copilots, AI assistants, automation tools).</li>
+                    <li><i class="fas fa-check-circle text-purple"></i> Practical knowledge of AI prompt engineering (academic projects or real-world use cases).</li>
+                    <li><i class="fas fa-check-circle text-purple"></i> Excellent communication, presentation & collaboration skills.</li>
+                    <li><i class="fas fa-check-circle text-purple"></i> Strong curiosity, learning agility & problem-solving mindset.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="skills-section">
+            <div class="skills-title">SKILLS & INTEREST</div>
+            <div class="skills-icons">
+                <div class="skill-item"><i class="fas fa-robot text-pink"></i> Interest in AI & GenAI</div>
+                <div class="skill-item"><i class="fas fa-terminal text-purple"></i> Prompt Engineering</div>
+                <div class="skill-item"><i class="fas fa-code text-purple"></i> Problem Solving</div>
+                <div class="skill-item"><i class="fas fa-users-cog text-pink"></i> Teamwork & Collaboration</div>
+                <div class="skill-item"><i class="fas fa-comments text-purple"></i> Great Communication Skills</div>
+            </div>
+        </div>
+
+        <!-- CTA Footer -->
+        <div class="cta-section">
+            <div class="cta-top">
+                <div class="cta-comment">
+                    <i class="fas fa-comment-dots"></i>
+                    <div>COMMENT <span>"JOB"</span><br>FOR APPLY LINK!</div>
+                </div>
+                <div class="cta-missout">
+                    <i class="fas fa-bell"></i>
+                    <div>DON'T MISS OUT ON<br><span>THIS OPPORTUNITY!</span></div>
+                </div>
+            </div>
+            
+            <div class="cta-bottom">
+                <div class="follow-box">
+                    FOLLOW<br><span>@u_r_ready</span>
+                </div>
+                <i class="fab fa-instagram insta-icon"></i>
+                <div class="share-box">
+                    SHARE<br>WITH YOUR FRIENDS<br>
+                    <span>WHO ARE LOOKING FOR<br>TOP JOB OPPORTUNITIES!</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
